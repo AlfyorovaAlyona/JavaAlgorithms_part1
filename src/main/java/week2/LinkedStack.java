@@ -1,10 +1,8 @@
 package week2;
 
 import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
 
-public class Stack<Item> implements Iterable<Item> {
+public class LinkedStack<Item> implements Iterable<Item> {
 
     @Override
     public Iterator<Item> iterator() {
@@ -13,10 +11,13 @@ public class Stack<Item> implements Iterable<Item> {
 
     private class ListIterator implements Iterator<Item> {
         private Node current = first;
+
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        @Override
         public Item next() {
             Item item = current.item;
             current = current.next;
