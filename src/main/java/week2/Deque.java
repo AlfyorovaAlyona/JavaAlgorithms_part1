@@ -1,5 +1,6 @@
 package week2;
 
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -90,7 +91,7 @@ public class Deque<Item> implements Iterable<Item> {
         while (it.hasNext()) {
             Item item = it.next();
             if (item != null)
-                System.out.print(item + " ");
+                StdOut.print(item + " ");
         }
     }
 
@@ -98,15 +99,12 @@ public class Deque<Item> implements Iterable<Item> {
         // overflow-conscious code
         final int oldCapacity = elements.length;
         int newCapacity;
-        // Double capacity if small; else grow by 50%
         int jump = (oldCapacity < 64) ? (oldCapacity + 2) : (oldCapacity >> 1);
         if (jump < needed
                 || (newCapacity = (oldCapacity + jump)) - MAX_ARRAY_SIZE > 0)
             newCapacity = newCapacity(needed, jump);
         final Object[] es = elements = Arrays.copyOf(elements, newCapacity);
-        // Exceptionally, here tail == head needs to be disambiguated
         if (last < first || (last == first && es[first] != null)) {
-            // wrap around; slide first leg forward to end of array
             int newSpace = newCapacity - oldCapacity;
             System.arraycopy(es, first,
                     es, first + newSpace,
@@ -142,7 +140,6 @@ public class Deque<Item> implements Iterable<Item> {
         public LinkedIterator() {
             cursor = first;
         }
-        int lastRet = -1;
 
         public boolean hasNext()  {
             return remaining > 0;
