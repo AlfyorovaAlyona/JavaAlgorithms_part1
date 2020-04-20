@@ -125,7 +125,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     }
 
-    public void print() {
+    private void print() {
         Iterator<Item> it = iterator();
         StdOut.println("RandomizedQueue:");
         while (it.hasNext()) {
